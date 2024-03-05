@@ -11,7 +11,8 @@ pipeline {
         stage('Build') {
             steps {
                 build 'PES2UG21CS077-1'
-                sh 'g++ main/hello.cpp -o output'
+                // Intentional error: Typo in the command
+                sh 'cmake .'
             }
         }
         stage('Test') {
