@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                build 'PES2UG21CS077-1'
+                
                 // Intentional error: Typo in the command
                 sh 'cmake .'
             }
