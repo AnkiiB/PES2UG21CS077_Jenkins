@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    
     stages {
         stage('Clone repository') {
             steps {
@@ -11,24 +10,20 @@ pipeline {
         }
         stage('Build') {
             steps {
-                // Compile the .cpp file using shell script
-                sh 'g++ -o output_file main.cpp'
+                sh 'make -C main' // Run Makefile to compile hello.cpp
             }
         }
         stage('Test') {
             steps {
-                // Print output of .cpp file using shell script
-                sh './output_file'
+                sh './main/hello' // Assuming hello.cpp generates an executable named 'hello'
             }
         }
         stage('Deploy') {
             steps {
-                // Add deployment steps here if needed
-                echo 'Deployment steps...'
+                echo 'deploy'
             }
         }
     }
-    
     post {
         failure {
             error 'Pipeline failed'
