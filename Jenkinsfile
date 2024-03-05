@@ -11,21 +11,24 @@ pipeline {
         }
         stage('Build') {
             steps {
-                build 'PES2UG21CS077-1'
-                sh 'g++ main.cpp -o output'
+                // Compile the .cpp file using shell script
+                sh 'g++ -o output_file main.cpp'
             }
         }
         stage('Test') {
             steps {
-                sh './output'
+                // Print output of .cpp file using shell script
+                sh './output_file'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'deploy'
+                // Add deployment steps here if needed
+                echo 'Deployment steps...'
             }
         }
     }
+    
     post {
         failure {
             error 'Pipeline failed'
