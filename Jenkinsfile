@@ -21,7 +21,15 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'deploy'
+                script {
+                    try {
+                        echo 'Deployment steps...'
+                        // Intentional error: Force a failure in the deploy stage
+                        error 'Deploy failed'
+                    } catch (Exception e) {
+                        echo "Caught an exception: ${e.getMessage()}"
+                    }
+                }
             }
         }
     }
