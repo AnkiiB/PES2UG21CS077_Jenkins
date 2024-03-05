@@ -10,19 +10,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                
-                // Intentional error: Typo in the command
-                sh 'cmake .'
+                build 'PES2UG21CS077-1'
+                sh 'g++ main.cpp -o output'
             }
         }
         stage('Test') {
             steps {
-                sh '''
-                ./output
-                for i in {1..5}; do
-                    echo $i
-                done
-                '''
+                sh './output'
             }
         }
         stage('Deploy') {
